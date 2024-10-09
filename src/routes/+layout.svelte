@@ -18,13 +18,11 @@
 {:then}
     <TopBar />
     <div class="min-h-full">
-        <div class="py-10">
-            <main>
-                <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-                    <slot />
-                </div>
-            </main>
-        </div>
+        <main>
+            <div class="mx-auto max-w-7xl px-2 py-2">
+                <slot />
+            </div>
+        </main>
     </div>
 
     <LoginModal
