@@ -15,7 +15,7 @@
 
 {#if show}
     <div class="w-screen h-screen fixed top-0 left-0 z-40">
-        <div class="w-full h-full fixed top-0 left-0 z-40 bg-black/75">
+        <div class="w-full h-full fixed top-0 left-0 z-40 bg-black/25">
             <button on:click={onModalBackgroundClick} class="w-full h-full"
             ></button>
         </div>
@@ -23,7 +23,7 @@
             class="w-full h-full fixed top-0 left-0 z-50 flex justify-center items-center"
         >
             <div
-                class="w-full md:w-fit h-full md:h-fit px-16 py-4 bg-zinc-800 md:rounded-3xl"
+                class="w-full md:w-fit h-full md:h-fit px-16 py-4 bg-gray-50 md:rounded-3xl"
             >
                 <slot />
             </div>

@@ -2,10 +2,7 @@
     import "$lib/assets/css/app.css";
     import Icon from "@iconify/svelte";
     import { init } from "$lib/helpers/ndk";
-    import LoginModal from "$lib/components/modals/LoginModal.svelte";
     import TopBar from "$lib/components/TopBar.svelte";
-
-    let showLoginModal = false;
 </script>
 
 {#await init()}
@@ -24,11 +21,4 @@
             </div>
         </main>
     </div>
-
-    <LoginModal
-        show={showLoginModal}
-        on:close={() => {
-            showLoginModal = false;
-        }}
-    />
 {/await}

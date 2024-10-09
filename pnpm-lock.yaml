@@ -14,6 +14,9 @@ dependencies:
   '@nostr-dev-kit/ndk-svelte':
     specifier: ^2.2.19
     version: 2.2.19(typescript@5.6.2)
+  blossom-client-sdk:
+    specifier: github:hzrd149/blossom-client-sdk
+    version: github.com/hzrd149/blossom-client-sdk/30f8bf4199dbee3db315f0153b41e6d6abbdcad0
 
 devDependencies:
   '@sveltejs/adapter-auto':
@@ -1873,3 +1876,12 @@ packages:
     engines: {node: '>= 14'}
     hasBin: true
     dev: true
+
+  github.com/hzrd149/blossom-client-sdk/30f8bf4199dbee3db315f0153b41e6d6abbdcad0:
+    resolution: {tarball: https://codeload.github.com/hzrd149/blossom-client-sdk/tar.gz/30f8bf4199dbee3db315f0153b41e6d6abbdcad0}
+    name: blossom-client-sdk
+    version: 1.1.1
+    engines: {node: '>=18'}
+    dependencies:
+      '@noble/hashes': 1.5.0
+    dev: false
