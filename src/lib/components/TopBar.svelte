@@ -6,6 +6,7 @@
     import IconButton from "./buttons/IconButton.svelte";
     import { page } from "$app/stores";
     import FilledButton from "./buttons/FilledButton.svelte";
+    import blossomImg from "$lib/assets/img/blossom.png";
 
     const onClickLogin = () => {
         login();
@@ -22,13 +23,13 @@
             <div class="flex">
                 <div class="flex flex-shrink-0 items-center">
                     <img
-                        class="block h-8 w-auto lg:hidden"
-                        src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+                        class="block h-10 w-auto rounded lg:hidden"
+                        src={blossomImg}
                         alt="Your Company"
                     />
                     <img
-                        class="hidden h-8 w-auto lg:block"
-                        src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+                        class="hidden h-10 w-auto rounded lg:block"
+                        src={blossomImg}
                         alt="Your Company"
                     />
                 </div>
