@@ -6,6 +6,7 @@
     import { BlossomClient } from "blossom-client-sdk";
     import { blossomClientSignEvent } from "$lib/helpers/blossom/signEvent";
     import { createEventDispatcher } from "svelte";
+    import { PUBLIC_CDN_URL } from "$env/static/public";
 
     export let show = false;
 
@@ -38,7 +39,7 @@
 
     let loading = false;
     const blossomClient = new BlossomClient(
-        "http://localhost:8000",
+        PUBLIC_CDN_URL,
         blossomClientSignEvent,
     );
     const dispatch = createEventDispatcher();
