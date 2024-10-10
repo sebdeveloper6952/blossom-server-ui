@@ -2,8 +2,8 @@
     export let expanded = false;
     export let disabled = false;
     export let size = "md";
-    export let bgColor = "bg-gray-200";
-    export let textColor = "text-gray-900";
+    export let bgColor = "bg-pink-100";
+    export let textColor = "text-pink-500";
 
     let px = "px-6";
     let py = "py-2";
@@ -14,6 +14,8 @@
         py = "py-1";
         textSize = "text-sm";
     }
+
+    $: c = `${px} ${py} ${textSize} ${textColor} ${bgColor} flex justify-center items-center rounded font-bold disabled:cursor-not-allowed`;
 </script>
 
 <button
@@ -21,7 +23,7 @@
     {disabled}
     class:w-full={expanded}
     class:w-fit={!expanded}
-    class={`${px} ${py} ${textSize} ${bgColor} ${textColor} rounded text-gray-800 font-bold bg-gray-300 hover:bg-gray-400/50 active:bg-gray-400 disabled:cursor-not-allowed disabled:hover:bg-gray-300`}
+    class={c}
 >
     <slot />
 </button>

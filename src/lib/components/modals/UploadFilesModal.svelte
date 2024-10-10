@@ -147,9 +147,7 @@
             >
             <FilledButton
                 on:click={() => onClickUpload()}
-                disabled={loading}
-                bgColor="bg-purple-200"
-                textColor="text-purple-500"
+                disabled={uploads == null || loading}
             >
                 {#if success}
                     Done
