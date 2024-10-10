@@ -5,7 +5,7 @@
     import Icon from "@iconify/svelte";
     import { BlossomClient } from "blossom-client-sdk";
     import { blossomClientSignEvent } from "$lib/helpers/blossom/signEvent";
-    import { createEventDispatcher } from "svelte";
+    import { createEventDispatcher, onMount } from "svelte";
     import { PUBLIC_CDN_URL } from "$env/static/public";
 
     export let show = false;
@@ -48,6 +48,28 @@
         dispatch("close");
     };
 
+    // Utilize bud-06 to verify if files can be uploaded to CDN.
+    const onFileChange = async (event: Event) => {
+        if (event.target as HTMLInputElement) {
+            const files = (event.target as HTMLInputElement).files;
+            if (files !== null && uploads !== null) {
+                let promises = [];
+
+                for (let i = 0; i < files.length; i++) {
+                    const prom = blossomClient.uploadRequirements(
+                        files[i],
+                        true,
+                    );
+                    prom.catch((_) => {
+                        uploads[i].status = "UNAUTH";
+                    });
+                    promises.push(prom);
+                }
+                await Promise.all(promises);
+            }
+        }
+    };
+
     const onClickUpload = async () => {
         if (success) {
             files = null;
@@ -58,13 +80,15 @@
         if (files !== null && uploads != null) {
             const promises = [];
             for (let i = 0; i < files.length; i++) {
+                if (uploads[i].status === "UNAUTH") continue;
+
                 const uploadPromise = blossomClient.uploadBlob(files[i], true);
                 uploads[i].status = "UPLOADING";
                 uploadPromise
-                    .then((blob) => {
+                    .then((_) => {
                         uploads[i].status = "SUCCESS";
                     })
-                    .catch((err) => {
+                    .catch((_) => {
                         uploads[i].status = "ERROR";
                     });
                 promises.push(uploadPromise);
@@ -91,17 +115,8 @@
 <BaseModal {show}>
     <div class="w-full md:w-96">
         <h3 class="text-lg font-bold">Upload Files</h3>
-        <div class="px-4 py-2 flex flex-row gap-2 rounded-2xl bg-gray-200">
-            <Icon
-                icon="system-uicons:check-circle"
-                width="24"
-                height="24"
-                class="text-green-500"
-            />
-            <p>You can upload files to this CDN.</p>
-        </div>
         <div class="mt-4">
-            <FileInput bind:files multiple />
+            <FileInput bind:files multiple on:change={onFileChange} />
             {#if uploads}
                 <div class="max-h-32 mt-2 flex flex-col gap-1 overflow-auto">
                     {#each uploads as file}
@@ -124,13 +139,16 @@
                                     height="20"
                                     class="text-green-500"
                                 />
-                            {:else if file.status === "ERROR"}
+                            {:else if file.status === "ERROR" || file.status === "UNAUTH"}
                                 <Icon
                                     icon="system-uicons:cross-circle"
                                     width="20"
                                     height="20"
                                     class="text-red-500"
                                 />
+                                <span class="text-sm text-red-500"
+                                    >Unauthorized</span
+                                >
                             {/if}
                         </div>
                     {/each}

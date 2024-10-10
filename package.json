@@ -27,6 +27,6 @@
         "@nostr-dev-kit/ndk": "^2.10.1",
         "@nostr-dev-kit/ndk-svelte": "^2.2.19",
         "@sveltejs/adapter-static": "^3.0.5",
-        "blossom-client-sdk": "github:hzrd149/blossom-client-sdk"
+        "blossom-client-sdk": "github:sebdeveloper6952/blossom-client-sdk"
     }
 }
